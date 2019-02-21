@@ -1,0 +1,105 @@
+<script>
+
+function chart() {
+    
+    if (reports.length == 0) {
+
+        $('#chartContainer').hide();
+        $('#x').append(`<h1 class="display-4"> Please select coins in <a href="/" id="index"> Index </a> </h1>`);
+
+
+    } else {
+
+      $('#chartContainer').fadeIn('slow');
+
+      const repotString = reports.join();
+      const apiLink = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${repotString}&tsyms=USD`;
+      let dataChart = [];
+        
+        $.getJSON(apiLink, function (data) {
+
+            for (let prop in data) {
+              let ob = {
+                type: "line",
+                legendText: prop,
+                showInLegend: true,
+              };
+              ob.dataPoints = [];
+      
+              for (let x = 60; x >= 0; x -= 5) {
+                var d = new Date();
+                d.setMinutes(d.getMinutes() - x);
+                ob.dataPoints.push({ x: d, y: data[prop].USD });
+              }
+              dataChart.push(ob);
+            }
+      
+            chart = new CanvasJS.Chart("chartContainer", {
+              title: {
+                text: `${repotString} to USD`
+              },
+              axisX: {
+                valueFormatString: "HH:mm",
+                labelAngle: -50
+              },
+              data: dataChart
+            });
+            chart.render();
+            updateChart();
+          });
+
+        
+          function updateChart() {
+
+            const repotString = reports.join();
+            const apiLink = `https://min-api.cryptocompare.com/data/pricemulti?fsyms=${repotString}&tsyms=USD`;
+            let dataChart = [];
+      
+            $.getJSON(apiLink, function (data) {
+      
+              for (let prop in data) {
+                let ob = {
+                  type: "line",
+                  legendText: prop,
+                  showInLegend: true,
+                };
+                ob.dataPoints = [];
+      
+                for (let x = 60; x >= 0; x -= 5) {
+                  var d = new Date();
+                  d.setMinutes(d.getMinutes() - x);
+                  ob.dataPoints.push({ x: d, y: data[prop].USD });
+                }
+                dataChart.push(ob);
+              }
+      
+              chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                  text: `${repotString} to USD`
+                },
+                axisX: {
+                  valueFormatString: "HH:mm",
+                  labelAngle: -50
+                },
+                data: dataChart
+              });
+              chart.render();
+              renderReportsTimer = setTimeout(function () { updateChart() }, 2000);
+            });
+          }
+      
+
+    }
+
+}
+
+</script>
+<script type="text/javascript">chart();</script>
+    <p id="ifblank">  </p>
+    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    
+
+
+
+
+

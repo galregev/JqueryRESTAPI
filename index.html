@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CryptoCoin | Online Appliction </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!-- FontAswome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- Animate.CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <!-- ChartJS -->
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <!-- Gal's Style & Script -->
+    <link rel="stylesheet" type="text/css" media="screen" href="assests/css/main.css" />
+    <script src="assests/js/app.js"></script>
+    <script src="assests/js/parralax.js"></script>
+    <script src="assests/js/loadChart.js"></script>
+</head>
+
+<body>
+
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h1><i class="fas fa-ban text-danger"></i></h1>
+                    <h3 class="font-weight-bold pt-2 text-uppercase"> Opps... somthing goes worng</h3>
+                    <p class="font-weight-light py-0 my-0"> You can select up to five tracking currencies. </p>
+                    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
+                        <span class="closeModal" aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn closeModal btn-outline-primary" data-dismiss="modal">Done</button>
+                    <button type="button" class="btn closeModal btn-outline-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-sm justify-content-center topNav fixed-top">
+        <div class="container">
+
+            <button class="navbar-toggler mx-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"><i class="far text-light fa-caret-square-down"></i></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="nav navbar-nav topNavbar text-center mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" id="index" href="#"><i class="fas fa-coins"></i> Coins</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="realtime" href="#"><i class="fas fa-chart-line"></i> Real-time</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="about" href="#"><i class="fas fa-user"></i> About</a>
+                </li>
+            </ul>
+        </div>
+            <span class="navbar-text mr-5 d-none d-md-block">
+                <button type="button" class="searchOpen" onclick="openSearch()"><i class="fas fa-search"></i></button>
+            </span>
+
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <header class="row">
+
+            <div class="col-sm-12">
+
+                <div class="diamondB"></div>
+
+                <div class="container">
+
+                    <h1 class="text-white text-center logo"> <i class="fab fa-bitcoin bitIco animated slow flipInX mx-auto"></i>
+                        <span class="animated d-inline-block slow zoomInUp">CryptoCoin</span> <span class="badge badge-light">Beta</span></h1>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <section id="scrollDown" class="row">
+
+            <div class="col-sm-12 text-center">
+                <p class="lead"><a href="#coins" class="scrollme">Scroll Down</a><i class="fa fa-angle-double-down arrowDown"></i></p>
+            </div>
+
+        </section> 
+
+        <!-- Coins Section -->
+        <section id="coins">
+
+            <div class="row">
+
+                <div class="container">
+
+                    <div class="col-sm-12 text-center mb-3">
+
+                        <div id="searchModal" class="overlay ">
+                            <span class="closebtn" onclick="closeSearch()" title="Close Overlay"><i class="fas fa-times-circle"></i></span>
+                            <div class="overlay-content">
+                                <input id="search" type="text" placeholder="Search for coin..." name="search"
+                                    autocomplete="off">
+                                <p class="lead text-light"> Press The <i class="fas fa-times-circle"></i> button or
+                                    Enter </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="loader"> <i class="fab fa-bitcoin bitIco"></i> </div>
+                    <div id="x" class="card-group text-center">
+
+                        <!--<div class="col-lg-3 col-sm-4">
+                            <div class="card text-white bg-primary mb-3">
+                                <img class="cardImg" src="bc.png" alt="Card image cap">
+                                <div class="card-body">
+                                    <div class="collapse" id="moreInfo">
+                                        <i class="fas fa-dollar-sign"></i> <i class="fas fa-shekel-sign"></i> <i class="fas fa-euro-sign"></i>
+                                    </div>
+                                    <h4 class="card-title">BTC</h4>
+                                    <label class="switch mt-3">
+                                        <input type="checkbox">
+                                        <span class="slider round"></span>
+                                    </label>
+                                    <a href="#howTo" class="d-block mt-2 mb-3 text-white" data-toggle="collapse">
+                                        Instructions <i class="fas fa-caret-down"></i> </a>
+                                    <div class="collapse" id="howTo">
+                                        <ul class="list-group text-left mb-2">
+                                            <li class="list-group-item list-group-item-primary">1. <strong>Please</strong>
+                                                check the toggle slider for save the coin.</li>
+                                            <li class="list-group-item list-group-item-primary">2. <strong>Click</strong>
+                                                on "More Info" to check currency exchange.</li>
+                                        </ul>
+                                    </div>
+                                    <a href="#moreInfo" data-toggle="collapse" class="btn btn-outline-light d-block">More
+                                        Info</a>
+
+                                </div>
+                            </div>
+                        </div>-->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            
+                <div class="row">
+                    <div class="col-sm-12">
+                        <nav class="navbar">
+                            <span class="navbar-brand mx-auto mx-md-0" style="font-size: 190%; color: white; font-weight: 200;">
+                                <i class="fab fa-bitcoin bitIco"></i> CryptoCoin
+                            </span>
+                            <ul class="nav justify-content-center downNav">
+                                <li class="nav-item">
+                                    <a class="nav-link" id="index">Coins</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" onclick="chart()" id="realtime">Real-time</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="about">About</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            
+        </footer>
+
+    </div> <!-- ContainerFluid -->
+
+    <button type="button" class="d-sm-none d-block searchFixed" onclick="openSearch()"><i class="fas fa-search"></i></button>
+
+    <a id="top" href="#">
+        <i class="fas fa-angle-double-up"></i>
+        <span>go top</span>
+    </a>
+
+</body>
+
+</html>
